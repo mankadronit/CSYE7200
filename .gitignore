@@ -17,3 +17,4 @@ output\.html
 /draft final.pages
 /.bsp/
 *.vscode/settings.json
+.vscode
