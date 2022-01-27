@@ -18,3 +18,4 @@ output\.html
 /.bsp/
 *.vscode/settings.json
 .vscode
+.DS_Store
