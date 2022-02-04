@@ -5,6 +5,8 @@
 *.class
 *.log
 
+.metals
+
 target/
 project/target/
 api/
