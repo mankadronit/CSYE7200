@@ -22,7 +22,7 @@ class IngestSpec extends AnyFlatSpec with Matchers {
     val xys = ingester(source).toSeq
     // check that xys has exactly one element, consisting of Success(42) -- 10 points
     xys.size shouldBe 1
-    assert(xys.head == Success(42), "Parsable works for Int")
+    assert(xys.head == Success(42), "ingest works for Int")
   }
 
   it should "work for movie database" in {

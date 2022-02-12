@@ -1,7 +1,7 @@
 package edu.neu.coe.csye7200.asstmd
 
 import scala.io.Source
-import scala.util.Try
+import scala.util.{Failure, Success, Try}
 
 /**
   * This class represents a Movie from the IMDB data file on Kaggle.
@@ -105,6 +105,7 @@ object Movie extends App {
   if (args.length > 0) {
     val source = Source.fromFile(args.head)
     val kiwiMovies = for (my <- ingester(source)) yield for (m <- my; if m.production.isKiwi) yield m
+
     kiwiMovies foreach (_ foreach println)
     source.close()
   }
@@ -119,7 +120,7 @@ object Movie extends App {
   def elements(list: Seq[String], indices: Int*): List[String] = {
     // Hint: form a new list which is consisted by the elements in list in position indices. Int* means array of Int.
     // 6 points
-    val result: Seq[String] = list.filter(e => indices contains list.indexOf(e))
+    val result: Seq[String] = indices.map(list)
     result.toList
   }
 
@@ -143,7 +144,6 @@ object Movie extends App {
     val genres = ws(9).split("""\|""").toList
     val imdb = ws(17)
 
-    print(s"TITLE: ${title}")
     Movie(title, format, production, reviews, director, actor1, actor2, actor3, genres, plotKeywords, imdb)
   }
 }
