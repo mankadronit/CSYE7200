@@ -68,7 +68,7 @@ object Function {
     * @return a function of type (Try[T1],Try[T2])=>Try[R]
     */
   // Think Simple, Elegant, Obvious
-  def lift2[T1, T2, R](f: (T1, T2) => R): (Try[T1], Try[T2]) => Try[R] =  (a: Try[T1], b: Try[T2]) => Try(f(a.get, b.get))
+  def lift2[T1, T2, R](f: (T1, T2) => R): (Try[T1], Try[T2]) => Try[R] =  map2(_, _)(f)
 
   /**
     * Lift function to transform a function f of type (T1,T2,T3)=>R into a function of type (Try[T1],Try[T2],Try[T3])=>Try[R]
@@ -81,7 +81,7 @@ object Function {
     * @return a function of type (Try[T1],Try[T2],Try[T3])=>Try[R]
     */
   // If you can do lift2, you can do lift3
-  def lift3[T1, T2, T3, R](f: (T1, T2, T3) => R): (Try[T1], Try[T2], Try[T3]) => Try[R] = (a: Try[T1], b: Try[T2], c: Try[T3]) => Try(f(a.get, b.get, c.get))
+  def lift3[T1, T2, T3, R](f: (T1, T2, T3) => R): (Try[T1], Try[T2], Try[T3]) => Try[R] = map3(_, _, _)(f)
 
   /**
     * Lift function to transform a function f of type (T1,T2,T3,T4,T5,T6,T7)=>R into a function of type (Try[T1],Try[T2],Try[T3],Try[T4],Try[T5],Try[T6],Try[T7])=>Try[R]
@@ -99,7 +99,7 @@ object Function {
     */
   // If you can do lift3, you can do lift7
   def lift7[T1, T2, T3, T4, T5, T6, T7, R](f: (T1, T2, T3, T4, T5, T6, T7) => R):
-  (Try[T1], Try[T2], Try[T3], Try[T4], Try[T5], Try[T6], Try[T7]) => Try[R] = (a: Try[T1], b: Try[T2], c: Try[T3], d: Try[T4], e: Try[T5], g: Try[T6], h: Try[T7]) => Try(f(a.get, b.get, c.get, d.get, e.get, g.get, h.get))
+  (Try[T1], Try[T2], Try[T3], Try[T4], Try[T5], Try[T6], Try[T7]) => Try[R] = map7(_, _, _, _, _, _, _)(f)
 
   /**
     * This method inverts the order of the first two parameters of a two-(or more-)parameter curried function.
